@@ -20,7 +20,9 @@ func main() {
 
 	router.GET("/consent", func(c *gin.Context) {
 		challenge := c.Query("consent_challenge")
-		result, err := hydraAdmin.Admin.GetConsentRequest(admin.NewGetConsentRequestParams().WithConsentChallenge(challenge))
+		result, err := hydraAdmin.Admin.GetConsentRequest(
+			admin.NewGetConsentRequestParams().
+				WithConsentChallenge(challenge))
 		if err != nil {
 			log.Printf("%v", err)
 		} else {
@@ -33,6 +35,26 @@ func main() {
 			"ClientID":        result.Payload.Client.ClientID,
 			"User":            result.Payload.Subject,
 		})
+	})
+
+	router.POST("/consent", func(c *gin.Context) {
+		challenge := c.PostForm("challenge")
+		grant_scope := c.PostForm("grant_scope")
+		result, err := hydraAdmin.Admin.AcceptConsentRequest(
+			admin.NewAcceptConsentRequestParams().
+				WithConsentChallenge(challenge).
+				WithBody(&models.AcceptConsentRequest{
+					GrantScope: *&models.StringSlicePipeDelimiter{
+						grant_scope,
+					},
+				}))
+		if err != nil {
+			log.Printf("%v", err)
+			c.Redirect(http.StatusFound, "/consent?consent_challenge="+challenge)
+		} else {
+			c.Redirect(http.StatusFound, *result.Payload.RedirectTo)
+		}
+
 	})
 
 	router.GET("/login", func(c *gin.Context) {

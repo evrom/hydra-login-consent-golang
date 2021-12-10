@@ -15,7 +15,7 @@
         <input type="hidden" name="challenge" value="{{ .challenge }}">
         <ul>
             {{range .RequestedScopes}}
-            <li><input type="checkbox" name="{{.}}">{{.}}</li>
+            <li><input type="checkbox" name="grant_scope" value="{{.}}">{{.}}</li>
             {{end}}
         </ul>
         <input type="submit">
