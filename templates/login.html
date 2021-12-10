@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Please sign in to proceed</title>
 </head>
+
 <body>
-<p>
-    Please sign in to proceed.
-</p>
+    <p>
+        Please sign in to proceed.
+    </p>
 
-<form action="/login" method="POST">
-  <input type="hidden" name="challenge" value="{{ .challenge }}">
-    <input type="text" name="username">
-    <input type="password" name="password">
-    <input type="submit">
-</form>
+    <form action="/login" method="POST">
+        <input type="hidden" name="challenge" value="{{ .challenge }}">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <input type="submit">
+    </form>
 
-<p>
-    To sign in, use the credentials "buzz:lightyear"
-</p>
+    <p>
+        To sign in, use the credentials "buzz:lightyear"
+    </p>
 
 </body>
+
 </html>
