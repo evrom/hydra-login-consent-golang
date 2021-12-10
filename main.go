@@ -28,12 +28,13 @@ func main() {
 		}
 
 		c.HTML(http.StatusOK, "consent.html", gin.H{
-			"title":           "Main website",
+			"challenge":       challenge,
 			"RequestedScopes": result.Payload.RequestedScope,
 			"ClientID":        result.Payload.Client.ClientID,
 			"User":            result.Payload.Subject,
 		})
 	})
+
 	router.GET("/login", func(c *gin.Context) {
 		challenge := c.Query("login_challenge")
 		c.HTML(http.StatusOK, "login.html", gin.H{
