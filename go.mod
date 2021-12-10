@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/ory/hydra-client-go v1.10.6
+	layeh.com/radius v0.0.0-20210819152912-ad72663a72ab
 )
 
 require (

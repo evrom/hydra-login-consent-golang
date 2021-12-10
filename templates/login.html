@@ -10,7 +10,7 @@
     <p>
         Please sign in to proceed.
     </p>
-
+    <p>{{ .error }}</p>
     <form action="/login" method="POST">
         <input type="hidden" name="challenge" value="{{ .challenge }}">
         <input type="text" name="username">
@@ -19,7 +19,7 @@
     </form>
 
     <p>
-        To sign in, use the credentials "buzz:lightyear"
+        To sign in, use the credentials "tim:12345"
     </p>
 
 </body>
